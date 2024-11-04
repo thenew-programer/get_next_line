@@ -13,18 +13,20 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#include <stddef.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-
-# define BUFSZ 2048;
+# include <stddef.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
 
 char	*get_next_line(int fd);
-char	*read_line(int fd, char *buffer, size_t *idx);
+char	*read_line(int fd, char *buffer, char *left);
 void	ft_bzero(void *ptr, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
 size_t	ft_strlen(const char *str);
+size_t	ft_strlcpy(char *dest, const char *src, size_t size);
+char	*ft_strdup(const char *str);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *str, int c);
 
 #endif /* GET_NEXT_LINE_H */
