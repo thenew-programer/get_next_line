@@ -104,6 +104,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 /*
+#include <stdio.h>
 int main(int argc, char **argv)
 {
 	int		fd;
