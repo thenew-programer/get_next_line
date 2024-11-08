@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *str)
 
 char	*read_line(int fd, char *buffer, char *left)
 {
-	int		ret;
+	int			ret;
 	char	*tmp;
 
 	ret = 1;
@@ -103,6 +103,7 @@ char	*get_next_line(int fd)
 	line = extract_line(&left);
 	return (line);
 }
+
 /*
 #include <stdio.h>
 int main(int argc, char **argv)

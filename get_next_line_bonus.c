@@ -6,7 +6,7 @@
 /*   By: ybouryal <ybouryal@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 08:45:10 by ybouryal          #+#    #+#             */
-/*   Updated: 2024/11/06 08:49:14 by ybouryal         ###   ########.fr       */
+/*   Updated: 2024/11/08 22:01:55 by ybouryal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ char	*read_line(int fd, char *buffer, char *left)
 	return (left);
 }
 
-char *extract_line(char **left)
+char	*extract_line(char **left)
 {
-    char	*tmp_left;
-    char	*line;
-    int		len;
+    char		*tmp_left;
+    char		*line;
+    int			len;
 
 	len = 0;
     if (!*left || !**left)
-        return NULL;
+		return (NULL);
     while ((*left)[len] && (*left)[len] != '\n')
         len++;
     if ((*left)[len] == '\n')
@@ -73,7 +73,7 @@ char *extract_line(char **left)
         free(*left);
         *left = NULL;
     }
-    return line;
+    return (line);
 }
 
 char	*get_next_line(int fd)
@@ -103,9 +103,8 @@ char	*get_next_line(int fd)
 	line = extract_line(&left[fd]);
 	return (line);
 }
-
+/*
 #include <stdio.h>
-
 int main(int argc, char **argv)
 {
 	int	fd[3];
@@ -116,7 +115,7 @@ int main(int argc, char **argv)
 	fd[0] = open(argv[1], O_RDONLY);
 	fd[1] = open(argv[2], O_RDONLY);
 	fd[2] = open(argv[3], O_RDONLY);
-	line_counter = 0;
+	line_counter = 1;
 	while (1)
 	{
 		for (int i = 0; i < 3; i++)
@@ -129,4 +128,4 @@ int main(int argc, char **argv)
 			free(line);
 		}
 	}
-}
+}*/

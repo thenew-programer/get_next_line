@@ -13,12 +13,16 @@
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
+# ifndef BUFFER_SIZE
+# define BUFFER_SIZE 2048
+# endif /* BUFFER_SIZE */
+
 # include <stddef.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define MAX_FD 100
+# define MAX_FD 1024
 
 char	*get_next_line(int fd);
 char	*read_line(int fd, char *buffer, char *left);
