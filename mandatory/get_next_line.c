@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *str)
 
 char	*read_line(int fd, char *buffer, char *left)
 {
-	int			ret;
+	int		ret;
 	char	*tmp;
 
 	ret = 1;
@@ -47,33 +47,33 @@ char	*read_line(int fd, char *buffer, char *left)
 	return (left);
 }
 
-char *extract_line(char **left)
+char	*extract_line(char **left)
 {
-    char	*tmp_left;
-    char	*line;
-    int		len;
+	char	*tmp_left;
+	char	*line;
+	int		len;
 
 	len = 0;
-    if (!*left || !**left)
-        return NULL;
-    while ((*left)[len] && (*left)[len] != '\n')
-        len++;
-    if ((*left)[len] == '\n')
-        line = ft_substr(*left, 0, ++len);
-    else
-        line = ft_strdup(*left);
-    if ((*left)[len])
-    {
-        tmp_left = ft_strdup(*left + len);
-        free(*left);
-        *left = tmp_left;
-    }
-    else
-    {
-        free(*left);
-        *left = NULL;
-    }
-    return line;
+	if (!*left || !**left)
+		return (NULL);
+	while ((*left)[len] && (*left)[len] != '\n')
+		len++;
+	if ((*left)[len] == '\n')
+		line = ft_substr(*left, 0, ++len);
+	else
+		line = ft_strdup(*left);
+	if ((*left)[len])
+	{
+		tmp_left = ft_strdup(*left + len);
+		free(*left);
+		*left = tmp_left;
+	}
+	else
+	{
+		free(*left);
+		*left = NULL;
+	}
+	return (line);
 }
 
 char	*get_next_line(int fd)
