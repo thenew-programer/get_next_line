@@ -89,7 +89,7 @@ char	*get_next_line(int fd)
 		left = NULL;
 		return (NULL);
 	}
-	if (fd < 3 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
 	{
 		free(buffer);
 		free(left);
