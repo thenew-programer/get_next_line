@@ -38,7 +38,7 @@ In Unix-like operating systems, file descriptors are integral values used by the
 
    - `1`: Standard Output (stdout) – Represents output to the terminal or another output destination.
 
-   - '2': Standard Error (stderr) – Represents error messages output to the terminal.
+   - `2`: Standard Error (stderr) – Represents error messages output to the terminal.
 
 2. How They work:
 
