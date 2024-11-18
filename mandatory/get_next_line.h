@@ -20,8 +20,7 @@
 
 char	*get_next_line(int fd);
 char	*read_line(int fd, char *buffer, char *left);
-void	ft_bzero(void *ptr, size_t n);
-void	*ft_calloc(size_t nmemb, size_t size);
+char	*extract_line(char **left);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 char	*ft_strdup(const char *str);

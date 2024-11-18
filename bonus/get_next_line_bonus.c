@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *str)
 
 char	*read_line(int fd, char *buffer, char *left)
 {
-	int		ret;
+	ssize_t	ret;
 	char	*tmp;
 
 	ret = 1;
@@ -51,7 +51,7 @@ char	*extract_line(char **left)
 {
 	char	*tmp_left;
 	char	*line;
-	int		len;
+	ssize_t	len;
 
 	len = 0;
 	if (!*left || !**left)
@@ -82,17 +82,13 @@ char	*get_next_line(int fd)
 	char		*buffer;
 	char		*line;
 
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > MAX_FD)
+		return (NULL);
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 	{
-		free(left[fd]);
-		left[fd] = NULL;
-		return (NULL);
-	}
-	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0 || fd > MAX_FD)
-	{
-		free(buffer);
-		free(left[fd]);
+		if (left[fd])
+			free(left[fd]);
 		left[fd] = NULL;
 		return (NULL);
 	}
