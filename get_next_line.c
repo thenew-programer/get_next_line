@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <fcntl.h>
 
 size_t	ft_strlen(const char *str)
 {
@@ -32,12 +33,16 @@ char	*read_line(int fd, char *buffer, char *left)
 	{
 		ret = read(fd, buffer, BUFFER_SIZE);
 		if (ret == -1)
+		{
+			if (left)
+				return (free(left), NULL);
 			return (NULL);
+		}
 		if (ret == 0)
 			break ;
-		buffer[ret] = '\0';
 		if (!left)
 			left = ft_strdup("");
+		buffer[ret] = '\0';
 		tmp = left;
 		left = ft_strjoin(left, buffer);
 		free(tmp);
@@ -83,14 +88,17 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+	{
+		if (left)
+			free(left);
+		return (left = NULL, left);
+	}
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 	{
 		if (left)
 			free(left);
-		left = NULL;
-		return (NULL);
+		return (left = NULL, left);
 	}
 	left = read_line(fd, buffer, left);
 	free(buffer);
@@ -122,4 +130,35 @@ int main(int argc, char **argv)
 		line_counter++;
 		free(line);
 	}
+}
+#include <stdio.h>
+
+int main()
+{
+		int fd;
+		char	*s;
+		fd = open("fsoares/read_error.txt", O_RDONLY);
+		if (fd < 0)
+				return (1);
+		s = get_next_line(fd);
+		printf("%s", s);
+		free(s);
+		s = get_next_line(fd);
+		printf("%s", s);
+		free(s);
+		while ((s = get_next_line(fd)) != NULL)
+				free(s);
+		close(fd);
+		printf("\n\n");
+		fd = open("fsoares/read_error.txt", O_RDONLY);
+		if (fd < 0)
+				return (1);
+		do {
+				s = get_next_line(fd);
+				if (!s)
+						continue;
+				printf("%s", s);
+				free(s);
+		} while (s != NULL);
+		return (0);
 }*/
