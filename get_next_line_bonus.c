@@ -32,7 +32,11 @@ char	*read_line(int fd, char *buffer, char *left)
 	{
 		ret = read(fd, buffer, BUFFER_SIZE);
 		if (ret == -1)
+		{
+			if (left)
+				return (free(left), NULL);
 			return (NULL);
+		}
 		if (ret == 0)
 			break ;
 		buffer[ret] = '\0';
